@@ -1,5 +1,6 @@
 //--------------------- FRAGMENT SHADER --------------------------------
 //----------------------------------------------------------------------
+precision lowp float;  // some mobile devices might be happier with this
 
 // textures
 uniform 	sampler2d 	backdrop;		// artwork of the current room
