@@ -3,8 +3,8 @@
 precision lowp float;  // some mobile devices might be happier with this
 
 // textures
-uniform 	sampler2d 	backdrop;		// artwork of the current room
-uniform 	sampler2d 	blur_vignette;	// b&w image used to tell us how much to blur edges
+uniform 	sampler2D 	backdrop;		// artwork of the current room
+uniform 	sampler2D 	blur_vignette;	// b&w image used to tell us how much to blur edges
 
 // arguments passed from javascript via glUniform1f()
 attribute	float		spoon_lvl;		// how much energy does the player have?
