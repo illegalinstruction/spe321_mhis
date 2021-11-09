@@ -466,6 +466,44 @@ const TRANSITION_STEPS		= 16;
 let transition_anim_clock	= 0;
 let gl_canvas				= twine_env.content.querySelector(&#39;#CANVAS&#39;);
 let gl 						= gl_canvas.getContext(&quot;webgl&quot;);
+let vert_program			= gl.createShader(gl.VERTEX_SHADER);
+let frag_program			= gl.createShader(gl.FRAGMENT_SHADER);
+let shader_program			= gl.createProgram();
+
+//--- shader programs ---------------------
+
+const vert = &#96;
+	precision lowp float;
+	
+	// raw vert as recv&#39;d from javascript
+	attribute vec4 in_vertex;
+	attribute vec2 in_texcoord;
+
+	// transformation matrices
+	uniform mat4 modelview;
+	uniform mat4 projection;
+
+	// per-pixel texture coordinates
+	varying vec2 TexCoord;
+
+	void main() 
+	{
+		gl_Position = modelview * projection * in_vertex;
+		TexCoord = in_texcoord;
+	}
+&#96;;
+
+//------------------------------------------
+
+const frag = &#96;
+	precision 			lowp float;  
+	varying vec2 		TexCoord;
+	uniform sampler2D   dummy;
+	void main()
+	{
+		gl_FragColor = texture2D(dummy, TexCoord);
+	}
+&#96;;
 
 //-------------------------------------------
 
@@ -486,6 +524,32 @@ function render_next_frame() {
 }
 
 //------------------------------------------
+// shader setup
+alert(&quot;setting up and compiling vertex and fragment shader...&quot;);
+gl.shaderSource(vert_program, vert);
+gl.shaderSource(frag_program, frag);
+gl.compileShader(vert_program); alert(gl.getShaderInfoLog(vert_program));
+gl.compileShader(frag_program); alert(gl.getShaderInfoLog(frag_program));
+gl.attachShader(shader_program, vert_program);
+gl.attachShader(shader_program, frag_program);
+gl.linkProgram(shader_program);
+gl.detachShader(shader_program, vert_program);
+gl.detachShader(shader_program, frag_program);
+gl.deleteShader(vert_program);
+gl.deleteShader(frag_program);
+if (!gl.getProgramParameter(shader_program, gl.LINK_STATUS))
+{
+	var error_message = gl.getProgramInfoLog(shader_program);
+	alert(&quot;Shaders compile and link failed somehow!  &quot; + error_message);
+}
+else
+{
+	alert(&quot;Shaders compile and link successful!~ Texture mapping should work now...&quot;);
+}
+	
+
+//------------------------------------------
+
 
 // register drawing func as callback
 setInterval(render_next_frame, (FRAME_RATE/1000.0));
