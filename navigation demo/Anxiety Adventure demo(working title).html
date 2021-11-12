@@ -456,6 +456,13 @@ You are incredibly anxious and stressed on a daily basis. You have heard that me
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagerender&#39;, function (twine_env) {
 
+// not working yet
+//passageinit = function(){alert(&quot;onload() called&quot;);}
+//passageend = function(){alert(&quot;onunload() called&quot;);}
+
+//------ playbalance/debug ------------------
+alert(&quot;Curr spoons: &quot; + State.variables.spoons + &quot; | Curr anxiety: &quot; + State.variables.anxiety);
+
 //------ constants --------------------------
 const FRAME_RATE 			= 25;
 const TRANSITION_STEPS		= 16;
@@ -523,11 +530,11 @@ function render_next_frame() {
 
 //------------------------------------------
 // shader setup
-alert(&quot;setting up and compiling vertex and fragment shader...&quot;);
+
 gl.shaderSource(vert_program, vert);
 gl.shaderSource(frag_program, frag);
-gl.compileShader(vert_program); alert(gl.getShaderInfoLog(vert_program));
-gl.compileShader(frag_program); alert(gl.getShaderInfoLog(frag_program));
+gl.compileShader(vert_program); 
+gl.compileShader(frag_program); 
 gl.attachShader(shader_program, vert_program);
 gl.attachShader(shader_program, frag_program);
 gl.linkProgram(shader_program);
@@ -535,22 +542,22 @@ gl.detachShader(shader_program, vert_program);
 gl.detachShader(shader_program, frag_program);
 gl.deleteShader(vert_program);
 gl.deleteShader(frag_program);
+
+// if something bad happens during compile, send up an error
 if (!gl.getProgramParameter(shader_program, gl.LINK_STATUS))
 {
 	var error_message = gl.getProgramInfoLog(shader_program);
 	alert(&quot;Shaders compile and link failed somehow!  &quot; + error_message);
 }
-else
-{
-	alert(&quot;Shaders compile and link successful!~ Texture mapping should work now...&quot;);
-}
-	
 
 //------------------------------------------
 
 
 // register drawing func as callback
 setInterval(render_next_frame, (FRAME_RATE/1000.0));
+
+// test code to see if Twine tells me when a passage switch is happening
+
 
 })
 &lt;&lt;/script&gt;&gt;
