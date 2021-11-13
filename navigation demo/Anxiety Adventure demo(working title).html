@@ -452,30 +452,24 @@ Perhaps only taking medication is not enough anymore. You get in contact with th
 &lt;&lt;else&gt;&gt;
 You can&#39;t go on living this way without any outside help. You get in contact with the school therapist and make an appointment. During your therapy appointment, the therapist suggests see a psychiatrist about getting on some medication as well. You gratefully accept the suggestion and leave with a psychiatry appointment. You decide to take the rest of the week off from your classes. Maybe with therapy and some medication, things will start looking up.
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="negativeOutlookBadEnd" tags="" position="872,692" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
-You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1024&quot; height=&quot;600&quot;&gt;&lt;/canvas&gt;
+You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;canvas id=&quot;CANVAS&quot; style=&quot;width:90%; height:48%&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;script&gt;&gt;
-$(document).one(&#39;:passagerender&#39;, function (twine_env) {
 
-// not working yet
-//passageinit = function(){alert(&quot;onload() called&quot;);}
-//passageend = function(){alert(&quot;onunload() called&quot;);}
+//------ constants --------------------------------------------
 
-//------ playbalance/debug ------------------
-alert(&quot;Curr spoons: &quot; + State.variables.spoons + &quot; | Curr anxiety: &quot; + State.variables.anxiety);
-
-//------ constants --------------------------
 const FRAME_RATE 			= 25;
 const TRANSITION_STEPS		= 16;
 
-//------ global vars ------------------------
-let transition_anim_clock	= 0;
-let gl_canvas				= twine_env.content.querySelector(&#39;#CANVAS&#39;);
-let gl 						= gl_canvas.getContext(&quot;webgl&quot;);
-let vert_program			= gl.createShader(gl.VERTEX_SHADER);
-let frag_program			= gl.createShader(gl.FRAGMENT_SHADER);
-let shader_program			= gl.createProgram();
+//------ global vars ------------------------------------------
 
-//--- shader programs ---------------------
+var transition_anim_clock	= 0;
+var gl_canvas				= null;
+var gl 						= null;
+var vert_program			= null;
+let frag_program			= null;
+let shader_program			= null;
+
+//--- vertex shader -------------------------------------------
 
 const vert = &#96;
 	precision lowp float;
@@ -485,34 +479,137 @@ const vert = &#96;
 	attribute vec2 in_texcoord;
 
 	// transformation matrices
-	uniform mat4 modelview;
-	uniform mat4 projection;
+	//uniform mat4 modelview;
+	//uniform mat4 projection;
 
 	// per-pixel texture coordinates
 	varying vec2 TexCoord;
 
 	void main() 
 	{
-		gl_Position = modelview * projection * in_vertex;
+		gl_Position = /*modelview * projection */ in_vertex;
 		TexCoord = in_texcoord;
 	}
 &#96;;
 
-//------------------------------------------
+//---- fragment shader ----------------------------------------
 
+// FIXME - this is where the blur/static stuff is supposed to get drawn
 const frag = &#96;
 	precision 			lowp float;  
 	varying vec2 		TexCoord;
-	uniform sampler2D   dummy;
+	//uniform sampler2D   dummy;
 	void main()
 	{
-		gl_FragColor = texture2D(dummy, TexCoord);
+		gl_FragColor = vec4(0.0,0.0,1.0,1.0);//texture2D(dummy, TexCoord);
 	}
 &#96;;
 
-//-------------------------------------------
+/*-------------------------------------------------------------
+ * obtains a rendering context and sets up our shaders
+ */
+function init_webgl(twine_env)
+{
+	// get context
+	gl_canvas				= twine_env.content.querySelector(&#39;#CANVAS&#39;);
+	gl 						= gl_canvas.getContext(&quot;webgl&quot;);
+	vert_program			= gl.createShader(gl.VERTEX_SHADER);
+	frag_program			= gl.createShader(gl.FRAGMENT_SHADER);
+	shader_program			= gl.createProgram();
+	
+	// compile &amp; link shader
+	gl.shaderSource(vert_program, vert);
+	gl.shaderSource(frag_program, frag);
 
-function render_next_frame() {
+	gl.compileShader(vert_program); 
+	gl.compileShader(frag_program); 
+
+	gl.attachShader(shader_program, vert_program);
+	gl.attachShader(shader_program, frag_program);
+
+	gl.linkProgram(shader_program);
+
+	gl.detachShader(shader_program, vert_program);
+	gl.detachShader(shader_program, frag_program);
+	gl.deleteShader(vert_program);
+	gl.deleteShader(frag_program);
+
+	// if something bad happens during compile, send up an error
+	if (!gl.getProgramParameter(shader_program, gl.LINK_STATUS))
+	{
+		var error_message = gl.getProgramInfoLog(shader_program);
+		alert(&quot;Shaders compile and link failed somehow!  &quot; + error_message);
+	}
+	
+	// no culling, no z buffer
+	gl.disable(gl.CULL_FACE);
+	gl.disable(gl.DEPTH_TEST);
+}
+
+/*-------------------------------------------------------------
+ * draws a rectangle with a texture on it.
+ * 
+ * precond:
+ * 	expects rendering context to be set up already &amp; correct
+ *  shader to be active.
+ *  
+ * args:
+ * 	tex: a texture id, should have been created via a call to
+ * 		glTexImage2D()
+ * 	x1: coordinate of left edge
+ * 	y1: coordinate of top edge
+ *	x2: coordinate of right edge
+ *  y2: coordinate of bottom edge 
+ * 
+ * bugs: 
+ * 	does no error checking for degenerate rectangles
+ */ 
+function draw_textured_rect(texture, x1, y1, x2, y2)
+{
+	// set up rectangle shape
+	var verts 	= [];
+	var uvs		= [0.0,0.0,1.0,0.0,1.0,1.0,0.0,1.0];
+	var indexes	= [0,1,2,3]; // this looks wrong, it isn&#39;t. 
+	
+	verts.push(x1); verts.push(y1);
+	verts.push(x2); verts.push(y1);
+	verts.push(x2); verts.push(y2);
+	verts.push(x1); verts.push(y2);
+	
+	// prepare geometry for drawing	
+	var vert_buf 	= gl.createBuffer();
+	var uv_buf		= gl.createBuffer();
+	var index_buf	= gl.createBuffer();
+	
+	gl.bindBuffer(gl.ARRAY_BUFFER, vert_buf);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+	
+	gl.bindBuffer(gl.ARRAY_BUFFER, uv_buf);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uvs), gl.STATIC_DRAW);
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, index_buf);
+	gl.bufferData(gl.ARRAY_BUFFER, new Uint16Array(indexes), gl.STATIC_DRAW);
+	
+	// send it all off to the video card driver
+	gl.useProgram(shader_program);
+	var attrib_ptr_verts 	= gl.getAttribLocation(shader_program,&quot;in_vertex&quot;);
+	var attrib_ptr_uvs	 	= gl.getAttribLocation(shader_program,&quot;in_texcoord&quot;);
+	
+	gl.enableVertexAttribArray(attrib_ptr_verts);
+	gl.enableVertexAttribArray(attrib_ptr_uvs);
+	
+	gl.drawElements(gl.TRIANGLE_STRIP, indexes.length, gl.UNSIGNED_SHORT,0);
+		
+	gl.deleteBuffer(vert_buf);
+	gl.deleteBuffer(uv_buf);
+	gl.deleteBuffer(index_buf);   // FIXME - not done yet
+	
+}
+
+//-------------------------------------------------------------
+
+function render_next_frame() 
+{
 	// drawing will go here, it&#39;s not done yet
 	var canv_half_width 	= gl_canvas.width / 2.0;
 	var canv_half_height	= gl_canvas.height / 2.0;
@@ -526,40 +623,30 @@ function render_next_frame() {
 					0.0,
 					1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT);
+	draw_textured_rect(null, 16, 16, 64, 64);
 }
 
-//------------------------------------------
-// shader setup
+//-------------------------------------------------------------
 
-gl.shaderSource(vert_program, vert);
-gl.shaderSource(frag_program, frag);
-gl.compileShader(vert_program); 
-gl.compileShader(frag_program); 
-gl.attachShader(shader_program, vert_program);
-gl.attachShader(shader_program, frag_program);
-gl.linkProgram(shader_program);
-gl.detachShader(shader_program, vert_program);
-gl.detachShader(shader_program, frag_program);
-gl.deleteShader(vert_program);
-gl.deleteShader(frag_program);
-
-// if something bad happens during compile, send up an error
-if (!gl.getProgramParameter(shader_program, gl.LINK_STATUS))
+function cleanup_webgl()
 {
-	var error_message = gl.getProgramInfoLog(shader_program);
-	alert(&quot;Shaders compile and link failed somehow!  &quot; + error_message);
+	// not sure what else we need to do here - it looks like
+	// most stuff is automagically garbage-collected
+	gl.deleteProgram(shader_program);
 }
 
-//------------------------------------------
+//-------------------------------------------------------------
 
+$(document).on(&#39;:passageend&#39;, cleanup_webgl);
 
-// register drawing func as callback
-setInterval(render_next_frame, (FRAME_RATE/1000.0));
+//-------------------------------------------------------------
 
-// test code to see if Twine tells me when a passage switch is happening
-
-
-})
+$(document).on(&#39;:passagerender&#39;, function (twine_env) 
+{
+	alert(&quot;Curr spoons: &quot; + State.variables.spoons + &quot; | Curr anxiety: &quot; + State.variables.anxiety);
+	init_webgl(twine_env);
+	setInterval(render_next_frame, (FRAME_RATE/1000.0));
+});
 &lt;&lt;/script&gt;&gt;
 </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
