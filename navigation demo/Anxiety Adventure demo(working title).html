@@ -105,10 +105,11 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 &lt;&lt;set $medicationTracker to -1&gt;&gt;
 &lt;&lt;set $stayhome to 0&gt;&gt;
 &lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;
-Welcome to _______________. This is an interactive story meant to broaden your mind and experiences. We aim to open your eyes to experiences that others, and maybe even yourself, experience. We advise you to think critically about every decision, as these may effect your future. 
+Welcome to GAMENAME. This is an interactive story meant to broaden your mind and experiences. We aim to open your eyes to experiences that others, and maybe even yourself, experience. We advise you to think critically about every decision, as these may effect your future. 
 
 	As a disclaimer, we recommend you only continue on with this experience if you are in a clear head space and are not currently experiencing any depression or severe anxiety. Throughout this experience, you may experience shocking imagery and sounds. This is on purpose. If either of these may effect you negatively, we advise against continue in. 
-
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
 	To begin your adventure, please select from an option below. 
 	
 &lt;&lt;link &quot;See a therapist and take medication&quot;&gt;&gt;[
@@ -128,10 +129,11 @@ Welcome to _______________. This is an interactive story meant to broaden your m
 ]&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;Do not see a therapist and do not take medication&quot;&gt;&gt;[
 	&lt;&lt;goto &quot;homeMorning&quot;&gt;&gt;
-]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">
 You eat breakfast and finish getting ready for school.
 /* medicationTracker is -1 if not on medication path, so this if statement ensures medication is always an option even if you fell off the medication path due to missing too many days*/
 
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 
 &lt;&lt;if $medication is true and $therapist is true&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
@@ -248,7 +250,8 @@ Hopefully all goes well, but you can’t help but worry.
 &lt;&lt;else&gt;&gt;
   &lt;&lt;set $spoons to 6&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 
 &lt;&lt;switch visited()&gt;&gt;
 &lt;&lt;case 1&gt;&gt;
@@ -342,7 +345,7 @@ You wake up feeling refreshed and well rested. You are prepared and ready for th
 
 </tw-passagedata><tw-passagedata pid="4" name="classroom" tags="" position="579,455" size="100,100">&lt;&lt;set $stayhome to 0&gt;&gt;
 You arrive at your classroom
-&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 Passage text shared between all paths goes here
 /* switch statements for increasing anxiety levels*/
 &lt;&lt;if $medication is true or $therapist is true&gt;&gt;
@@ -453,6 +456,8 @@ Passage text shared between all paths goes here
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+
 &lt;&lt;if $medication is true and $therapist is true&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
@@ -512,7 +517,6 @@ As you enter the hallway, you fold your arms to your side, trying to appear as s
 		friday
 	&lt;&lt;/switch&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
 &lt;&lt;timed 5s&gt;&gt;
 &lt;&lt;if $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;
 You have an appointment with your therapist today.
@@ -538,7 +542,7 @@ You have an appointment with your therapist today.
 &lt;&lt;else&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 [[Leave school and go home.-&gt;evening]] 
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $homework to false&gt;&gt; 
 &lt;&lt;if $medication is true and $therapist is true&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
@@ -634,7 +638,7 @@ You head back upstairs and to your room in hopes of being left alone.
 &lt;&lt;if $spoons is 0&gt;&gt;
 	You are too tired to do anything else tonight.
 &lt;&lt;/if&gt;&gt;
-[[Go directly to sleep.-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+[[Go directly to sleep.-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;if $anxiety &gt;= 15&gt;&gt;
  You go on the date, but the week you just had was so stressful that you just can&#39;t seem to relax. You end the date feeling more anxious than when you left school.
  	&lt;&lt;set $anxiety += 3&gt;&gt;
@@ -648,7 +652,10 @@ You head back upstairs and to your room in hopes of being left alone.
 Try to figure out how many paths exist and come up with a way to test that every path works. (tedious and time consuming)
 Maybe add an agenda to the homeMorning passage.</tw-passagedata><tw-passagedata pid="9" name="therapy" tags="" position="850,274" size="100,100">&lt;&lt;set $anxiety -= 4 &gt;&gt;
 You go to your therapy appointment. Your therapist helps you put your anxiety into perspective and you feel a bit better after leaving the appointment.
-[[Go home-&gt;evening]] </tw-passagedata><tw-passagedata pid="10" name="homework" tags="" position="1105,330" size="100,100">&lt;&lt;if $teststudy is true&gt;&gt;
+[[Go home-&gt;evening]] </tw-passagedata><tw-passagedata pid="10" name="homework" tags="" position="1105,330" size="100,100">
+&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+
+&lt;&lt;if $teststudy is true&gt;&gt;
 	You spend the rest of the evening studying for the test on Tuesday. You end the night feeling confident and reassure, but there will always be a looming feeling of worry no matter how prepared you are. 
 &lt;&lt;else&gt;&gt;
 	You do some homework and feel somewhat accomplished.
@@ -656,10 +663,10 @@ You go to your therapy appointment. Your therapist helps you put your anxiety in
 &lt;&lt;set $teststudy to false&gt;&gt;
 [[Go to Sleep-&gt;homeMorning]] 
 
-</tw-passagedata><tw-passagedata pid="11" name="videogames" tags="" position="1106,458" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="11" name="videogames" tags="" position="1106,458" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 You play a few rounds of your favorite videogame. It helps you destress from your day and you finish the evening feeling less anxious than you did earlier today.
 
-[[Go to sleep-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="12" name="stayhome" tags="" position="651,609" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+[[Go to sleep-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="12" name="stayhome" tags="" position="651,609" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;if $stayhome &gt;= 2&gt;&gt;
 	Your anxiety is getting so bad that you find existence to be dreadful. You have a couple of options. You can do nothing about it, drop out of school and begin sinking into depression, or you can make one last ditch effort to try to work on improving your anxiety symptoms.
 [[Work on making things better-&gt;positiveOutlookBadEnd]]
@@ -692,7 +699,7 @@ You play a few rounds of your favorite videogame. It helps you destress from you
 &lt;&lt;/if&gt;&gt;
  [[Do something relaxing for the rest of the day-&gt;evening]] 
  &lt;&lt;/if&gt;&gt;
-</tw-passagedata><tw-passagedata pid="13" name="positiveOutlookBadEnd" tags="" position="865,563" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="13" name="positiveOutlookBadEnd" tags="" position="865,563" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;if $therapist is true and $medication is true&gt;&gt;
 You decide to do what you can to make things better. You take your medication and schedule an appointment with your therapist. You decide to take the rest of the week off and try to learn about some methods of reducing anxiety. Maybe next week things will be better.
 &lt;&lt;elseif $therapist is true&gt;&gt;
@@ -701,9 +708,8 @@ You decide to do what you can to make things better. You schedule an appointment
 Perhaps only taking medication is not enough anymore. You get in contact with the school therapist and make an appointment. You decide to take the rest of the week off from your classes. Maybe next week things will start looking up.
 &lt;&lt;else&gt;&gt;
 You can&#39;t go on living this way without any outside help. You get in contact with the school therapist and make an appointment. During your therapy appointment, the therapist suggests see a psychiatrist about getting on some medication as well. You gratefully accept the suggestion and leave with a psychiatry appointment. You decide to take the rest of the week off from your classes. Maybe with therapy and some medication, things will start looking up.
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="negativeOutlookBadEnd" tags="" position="872,692" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
-You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;script&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="negativeOutlookBadEnd" tags="" position="872,692" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;&lt;script&gt;&gt;
 
 //------ constants --------------------------------------------
 // gotcha: some browsers don&#39;t allow the const or let keywords
@@ -771,8 +777,8 @@ function draw_current_story_image()
 	var tilt_wobble				= Math.sin(effect_anim_clock / 187.2) * (Math.max(story_anxiety, 0) / 3.0) * Math.PI / 180.0 / 7.5;
 	var offset;
 	var chromatic_aberration 	= Math.max(story_anxiety - ANXIETY_MAJOR, 0.0);
-	var chromatic_wobble		= ((Math.cos(effect_anim_clock / 17.2)*0.45) + Math.cos(effect_anim_clock / 37.2) + Math.sin(effect_anim_clock / 51.3) + (Math.sin(effect_anim_clock / 81.3) * 1.25) + (Math.sin(effect_anim_clock / 41.3) * 0.33)) * (Math.max(story_anxiety - ANXIETY_MINOR, 0) / 3.0);
-	var fatigue_wobble			=  Math.max(Math.min(0.0,(Math.sin(effect_anim_clock / 97.2) + Math.sin(effect_anim_clock / 73.2) + Math.sin(effect_anim_clock / 133)+Math.sin(effect_anim_clock / 271.6))));
+	var chromatic_wobble		= ((Math.cos(effect_anim_clock / 17.2)*0.45) + Math.cos(effect_anim_clock / 37.2) + Math.sin(effect_anim_clock / 51.3) + (Math.sin(effect_anim_clock / 42.9) * 1.25) + (Math.sin(effect_anim_clock / 41.3) * 0.33)) * (Math.max(story_anxiety - ANXIETY_MINOR, 0) / 3.0);
+	var fatigue_wobble			=  Math.max(Math.min(0.0,(Math.sin(effect_anim_clock / 17.52) + Math.sin(effect_anim_clock / 73.2) + Math.sin(effect_anim_clock / 40)+Math.sin(effect_anim_clock / 271.6))));
 	
 
 	// handle fatigue
