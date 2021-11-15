@@ -105,8 +105,12 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 &lt;&lt;set $medicationTracker to -1&gt;&gt;
 &lt;&lt;set $stayhome to 0&gt;&gt;
 &lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;
-Welcome to (insert actual name of game here). This is an interactive story meant to raise awareness for anxiety and help people understand how it feels to experience anxiety on a daily basis. Before you begin, please choose a path. The path you choose will affect the encounters you experience and the amount of anxiety you accrue during each encounter.
+Welcome to _______________. This is an interactive story meant to broaden your mind and experiences. We aim to open your eyes to experiences that others, and maybe even yourself, experience. We advise you to think critically about every decision, as these may effect your future. 
 
+	As a disclaimer, we recommend you only continue on with this experience if you are in a clear head space and are not currently experiencing any depression or severe anxiety. Throughout this experience, you may experience shocking imagery and sounds. This is on purpose. If either of these may effect you negatively, we advise against continue in. 
+
+	To begin your adventure, please select from an option below. 
+	
 &lt;&lt;link &quot;See a therapist and take medication&quot;&gt;&gt;[
 	&lt;&lt;set $therapist to true&gt;&gt;
 	&lt;&lt;set $medication to true&gt;&gt;
@@ -127,6 +131,77 @@ Welcome to (insert actual name of game here). This is an interactive story meant
 ]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
 You eat breakfast and finish getting ready for school.
 /* medicationTracker is -1 if not on medication path, so this if statement ensures medication is always an option even if you fell off the medication path due to missing too many days*/
+
+
+&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+	&lt;&lt;if $shower is true&gt;&gt;
+You finish your shower and head downstairs for a healthy breakfast. As 7:30am approaches, you finish getting ready for school. 
+	&lt;&lt;else&gt;&gt;
+	You choose not to take a shower. You head downstairs for a healthy breakfast. As 7:30am approaches, you finish getting ready for school. 
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+	&lt;&lt;if $shower is true&gt;&gt;
+After showering, you head downstairs to eat some breakfast. You gather your things and prepare for a normal Tuesday… It’s test day. 
+Hopefully all goes well, but you can’t help but worry. 
+	&lt;&lt;else&gt;&gt;
+	You choose not to take a shower. you head downstairs to eat some breakfast. You gather your things and prepare for a normal Tuesday… It’s test day. 
+Hopefully all goes well, but you can’t help but worry. 
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		its monday
+		/* Monday passage text for medication only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for therapist only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for no help route
+		other cases are for tues-friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $medicationTracker &gt;= 0 and $spoons &gt;= 6&gt;&gt; 
 &lt;&lt;link &quot;Take your medication and go to school (-6 spoons)&quot;&gt;&gt;[
 	&lt;&lt;set $spoons -= 6&gt;&gt;
@@ -161,13 +236,14 @@ You eat breakfast and finish getting ready for school.
 	&lt;&lt;goto &quot;regularEndings&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set $anxiety *= 0.8&gt;&gt;
-&lt;&lt;if $anxiety &lt;= 5&gt;&gt;
+&lt;&lt;set $shower to false&gt;&gt;
+&lt;&lt;if $anxiety &lt;= 4&gt;&gt;
   &lt;&lt;set $spoons to 10&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 10&gt;&gt;
+&lt;&lt;elseif $anxiety &lt;= 8&gt;&gt;
   &lt;&lt;set $spoons to 9&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 15&gt;&gt;
+&lt;&lt;elseif $anxiety &lt;= 12&gt;&gt;
   &lt;&lt;set $spoons to 8&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 20&gt;&gt;
+&lt;&lt;elseif $anxiety &lt;= 16&gt;&gt;
   &lt;&lt;set $spoons to 7&gt;&gt;
 &lt;&lt;else&gt;&gt;
   &lt;&lt;set $spoons to 6&gt;&gt;
@@ -177,71 +253,24 @@ You eat breakfast and finish getting ready for school.
 &lt;&lt;switch visited()&gt;&gt;
 &lt;&lt;case 1&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;
-	It is Monday morning.
-	You wake up feeling refreshed and ready for the week ahead.
+	It&#39;s Monday morning.
 &lt;&lt;case 2&gt;&gt;
-		&lt;&lt;set $dayOfWeek to &quot;Tuesday&quot;&gt;&gt;
-	It is Tuesday morning.
+	&lt;&lt;set $dayOfWeek to &quot;Tuesday&quot;&gt;&gt;
+	It&#39;s Tuesday morning.
 &lt;&lt;case 3&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Wednesday&quot;&gt;&gt;
-	It is Wednesday morning.
+	It&#39;s Wednesday morning.
 &lt;&lt;case 4&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Thursday&quot;&gt;&gt;
-	It is Thursday morning.
+	It&#39;s Thursday morning.
 &lt;&lt;case 5&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Friday&quot;&gt;&gt;
-	It is Friday morning.
+	It&#39;s Friday morning.
 &lt;&lt;/switch&gt;&gt;
-
-&lt;&lt;link &quot;Take a shower.(-1 spoons)&quot;&gt;&gt; [
-&lt;&lt;set $spoons -= 1&gt;&gt;
-&lt;&lt;set $anxiety -= 1&gt;&gt;
-&lt;&lt;goto breakfast&gt;&gt;
-]&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;Don&#39;t take a shower.&quot;&gt;&gt; [
-&lt;&lt;set $anxiety += 2&gt;&gt;
-&lt;&lt;goto breakfast&gt;&gt;
-]&lt;&lt;/link&gt;&gt;
-
-
-
-</tw-passagedata><tw-passagedata pid="4" name="classroom" tags="" position="579,455" size="100,100">&lt;&lt;set $stayhome to 0&gt;&gt;
-You arrive at your classroom
-&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
-Passage text shared between all paths goes here
-
-/* switch statements for increasing anxiety levels*/
-&lt;&lt;if $medication is true or $therapist is true&gt;&gt;
-  &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
-		&lt;&lt;set $anxiety += 1&gt;&gt;
-  &lt;&lt;else&gt;&gt; /* no homework but therapy/meds*/
-  		&lt;&lt;set $anxiety += 2&gt;&gt;
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;if $homework is true&gt;&gt;
-	  &lt;&lt;switch $dayOfWeek&gt;&gt;
-	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
-	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 2&gt;&gt;
-	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;else&gt;&gt;
-	  &lt;&lt;switch $dayOfWeek&gt;&gt;
-	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 4&gt;&gt;
-	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
-	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
-/* Switch statement with embedded if statements for each route on each day */
 &lt;&lt;if $medication is true and $therapist is true&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-	/* Monday passage text for medication+therapist route
-	other cases are for tues - friday*/
+You wake up feeling refreshed and well rested. You are prepared and ready for the week ahead. 
 	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
 		tuesday
 	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
@@ -298,6 +327,107 @@ Passage text shared between all paths goes here
 	&lt;&lt;/switch&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;link &quot;Take a shower.(-1 spoons)&quot;&gt;&gt; [
+&lt;&lt;set $spoons -= 1&gt;&gt;
+&lt;&lt;set $anxiety -= 1&gt;&gt;
+&lt;&lt;set $shower to true&gt;&gt;
+&lt;&lt;goto breakfast&gt;&gt;
+]&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Don&#39;t take a shower.&quot;&gt;&gt; [
+&lt;&lt;set $anxiety += 2&gt;&gt;
+&lt;&lt;goto breakfast&gt;&gt;
+]&lt;&lt;/link&gt;&gt;
+
+
+
+</tw-passagedata><tw-passagedata pid="4" name="classroom" tags="" position="579,455" size="100,100">&lt;&lt;set $stayhome to 0&gt;&gt;
+You arrive at your classroom
+&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+Passage text shared between all paths goes here
+/* switch statements for increasing anxiety levels*/
+&lt;&lt;if $medication is true or $therapist is true&gt;&gt;
+  &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
+		&lt;&lt;set $anxiety += 1&gt;&gt;
+  &lt;&lt;else&gt;&gt; /* no homework but therapy/meds*/
+  		&lt;&lt;set $anxiety += 2&gt;&gt;
+  &lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;if $homework is true&gt;&gt;
+	  &lt;&lt;switch $dayOfWeek&gt;&gt;
+	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		  &lt;&lt;set $anxiety += 3&gt;&gt;
+	  &lt;&lt;default&gt;&gt;
+		  &lt;&lt;set $anxiety += 2&gt;&gt;
+	  &lt;&lt;/switch&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+	  &lt;&lt;switch $dayOfWeek&gt;&gt;
+	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		  &lt;&lt;set $anxiety += 4&gt;&gt;
+	  &lt;&lt;default&gt;&gt;
+		  &lt;&lt;set $anxiety += 3&gt;&gt;
+	  &lt;&lt;/switch&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+/* Switch statement with embedded if statements for each route on each day */
+&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+	Your classroom is bustling and busy, as usual. People are standing around and conversing. Just like every other day, you sit at your class, quiet. You are here to do your work and leave with as little stress and interaction as possible. 
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		its monday
+		/* Monday passage text for medication only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for therapist only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for no help route
+		other cases are for tues-friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 [[Leave the classroom-&gt;hallway]]</tw-passagedata><tw-passagedata pid="5" name="hallway" tags="" position="728,462" size="100,100">/* switch statements for increasing anxiety levels*/
 &lt;&lt;if $medication is true or $therapist is true&gt;&gt;
   &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
@@ -323,27 +453,82 @@ Passage text shared between all paths goes here
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-The hallway is very loud and busy, as usual.
+&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+As you enter the hallway, you fold your arms to your side, trying to appear as small as possible. The hallway is crowded and very loud. The smell of perfume and sweat fills the air, along with the sound of lockers frantically opening and closing. Finally, the end of the day. It couldn’t have come fast enough.
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		its monday
+		/* Monday passage text for medication only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for therapist only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for no help route
+		other cases are for tues-friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
 &lt;&lt;timed 5s&gt;&gt;
-&lt;&lt;if $dayOfWeek is not &quot;Thursday&quot; and $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
-[[Leave school to go home.-&gt;evening]] 
-&lt;&lt;elseif $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;
+&lt;&lt;if $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;
 You have an appointment with your therapist today.
   &lt;&lt;if $spoons &gt;= 3&gt;&gt;
-	&lt;&lt;link &quot;Go to your therapy appointment&quot;&gt;&gt;[
+	&lt;&lt;link &quot;Go to your therapy appointment(-3 spoons)&quot;&gt;&gt;[
 		&lt;&lt;set $spoons -= 3&gt;&gt;
 		&lt;&lt;set $anxiety -= 4&gt;&gt;
 		&lt;&lt;goto &quot;therapy&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
   &lt;&lt;else&gt;&gt;
 	  You are too exhausted to bother going to your therapy 		appointment.
-	  [[Go straight home.-&gt;evening]]
   &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $dayOfWeek is &quot;Friday&quot;&gt;&gt;
   Your significant other has invited you to go on a date.
     &lt;&lt;if $spoons &gt;= 3&gt;&gt;
-	&lt;&lt;link &quot;Accept their offer and go on the date.&quot;&gt;&gt;[
+	&lt;&lt;link &quot;Accept their offer and go on the date.(-3 spoons)&quot;&gt;&gt;[
 		&lt;&lt;set $spoons -= 3&gt;&gt;
 		&lt;&lt;goto &quot;date&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
@@ -352,11 +537,72 @@ You have an appointment with your therapist today.
   &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Leave school to go home.-&gt;evening]]
+[[Leave school and go home.-&gt;evening]] 
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
-&lt;&lt;set $homework to false&gt;&gt;
-You come home and eat dinner. You have some extra time in the evening before you need to go to sleep.
-You can choose to do homework, play videogames, or rest up for tomorrow.
+&lt;&lt;set $homework to false&gt;&gt; 
+&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+As you arrive home, dinner is almost done. You head up to your room and drop your bag by your door. Homework needs to be done, but that will be taken care of after dinner. 
+
+You head downstairs and grab a plate of food. As you sit around the kitchen table, the conversation is dry. You family has never been good at communication. Another long day, you just want it to be over.
+
+You head back upstairs and to your room in hopes of being left alone. 
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		its monday
+		/* Monday passage text for medication only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for therapist only route
+	other cases are for tues - friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+		monday
+		/* Monday passage text for no help route
+		other cases are for tues-friday*/
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+		tuesday
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+		wednesday
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+		thursday
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		friday
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $spoons &gt;= 2&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
@@ -375,16 +621,20 @@ You can choose to do homework, play videogames, or rest up for tomorrow.
 		&lt;&lt;goto &quot;homework&quot;&gt;&gt;	
 	]&lt;&lt;/link&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $spoons &gt;= 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $spoons is 1&gt;&gt;
 	You are too tired to do any homework tonight, but you feel up to playing a few rounds of your favorite video game.
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $spoons &gt;= 1&gt;&gt;
 	&lt;&lt;link &quot;Play your favorite video game( -1 spoons)&quot;&gt;&gt; [
 		&lt;&lt;set $anxiety -= 2&gt;&gt;
 		&lt;&lt;goto &quot;videogames&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
-&lt;&lt;else&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $spoons is 0&gt;&gt;
 	You are too tired to do anything else tonight.
 &lt;&lt;/if&gt;&gt;
-[[Go directly to sleep-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
+[[Go directly to sleep.-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
 &lt;&lt;if $anxiety &gt;= 15&gt;&gt;
  You go on the date, but the week you just had was so stressful that you just can&#39;t seem to relax. You end the date feeling more anxious than when you left school.
  	&lt;&lt;set $anxiety += 3&gt;&gt;
@@ -399,7 +649,7 @@ Try to figure out how many paths exist and come up with a way to test that every
 Maybe add an agenda to the homeMorning passage.</tw-passagedata><tw-passagedata pid="9" name="therapy" tags="" position="850,274" size="100,100">&lt;&lt;set $anxiety -= 4 &gt;&gt;
 You go to your therapy appointment. Your therapist helps you put your anxiety into perspective and you feel a bit better after leaving the appointment.
 [[Go home-&gt;evening]] </tw-passagedata><tw-passagedata pid="10" name="homework" tags="" position="1105,330" size="100,100">&lt;&lt;if $teststudy is true&gt;&gt;
-	You study for the test until you feel prepared.
+	You spend the rest of the evening studying for the test on Tuesday. You end the night feeling confident and reassure, but there will always be a looming feeling of worry no matter how prepared you are. 
 &lt;&lt;else&gt;&gt;
 	You do some homework and feel somewhat accomplished.
 &lt;&lt;/if&gt;&gt;
