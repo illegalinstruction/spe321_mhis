@@ -98,17 +98,11 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="Anxiety Adventure demo(working title)" startnode="1" creator="Twine" creator-version="2.3.14" ifid="1023AB9C-3686-49C1-9373-EC4E7049AF26" zoom="1" format="SugarCube" format-version="2.34.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="" position="143,400" size="100,100">&lt;&lt;set $medication to false&gt;&gt;
-&lt;&lt;set $therapist to false&gt;&gt;
-&lt;&lt;set $homework to true&gt;&gt;
-&lt;&lt;set $anxiety to 1&gt;&gt;
-&lt;&lt;set $spoons to 10&gt;&gt;
-&lt;&lt;set $medicationTracker to -1&gt;&gt;
-&lt;&lt;set $stayhome to 0&gt;&gt;
-&lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;
-&lt;&lt;set $time_of_day to &quot;wakeup&quot;&gt;&gt;
+	<tw-storydata name="Anxiety Adventure demo(working title)" startnode="1" creator="Twine" creator-version="2.3.15" ifid="1023AB9C-3686-49C1-9373-EC4E7049AF26" zoom="1" format="SugarCube" format-version="2.34.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="" position="143,400" size="100,100">&lt;&lt;set $medication to false&gt;&gt;&lt;&lt;set $therapist to false&gt;&gt;&lt;&lt;set $homework to true&gt;&gt;&lt;&lt;set $anxiety to 1&gt;&gt;&lt;&lt;set $spoons to 10&gt;&gt;&lt;&lt;set $medicationTracker to -1&gt;&gt;&lt;&lt;set $stayhome to 0&gt;&gt;&lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;&lt;&lt;set $time_of_day to &quot;wakeup&quot;&gt;&gt;
 Welcome to GAMENAME. This is an interactive story meant to broaden your mind and experiences. We aim to open your eyes to experiences that others, and maybe even yourself, experience. We advise you to think critically about every decision, as these may effect your future. 
 
+	Throughout this story, we will be using the Spoon Method to keep track of your energy levels as you go about the week. These spoons will be displayed on the screen as you progress. Think of the spoons as a 1-10 scale of how much energy you have left for the rest of the day, with 0 meaning you have no energy left. Choose accordingly.
+	
 	As a disclaimer, we recommend you only continue on with this experience if you are in a clear head space and are not currently experiencing any depression or severe anxiety. Throughout this experience, you may experience shocking imagery and sounds. This is on purpose. If either of these may effect you negatively, we advise against continue in. 
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;include &quot;canvas_container&quot;&gt;&gt;
@@ -133,87 +127,70 @@ Welcome to GAMENAME. This is an interactive story meant to broaden your mind and
 	&lt;&lt;goto &quot;homeMorning&quot;&gt;&gt;
 ]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">
 You eat breakfast and finish getting ready for school.
-/* medicationTracker is -1 if not on medication path, so this if statement ensures medication is always an option even if you fell off the medication path due to missing too many days*/
 &lt;&lt;set $time_of_day to &quot;breakfast&quot;&gt;&gt;
 
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 
-&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+
+&lt;&lt;switch $dayOfWeek&gt;&gt;
+&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 	&lt;&lt;if $shower is true&gt;&gt;
-You finish your shower and head downstairs for a healthy breakfast. As 7:30am approaches, you finish getting ready for school. 
+You finish your shower and make sure to brush your teeth and put on some smell good stuff. You head downstairs for a healthy breakfast. As 7:30am approaches, you manage to get in a decent breakfast and feel ready for the day.
 	&lt;&lt;else&gt;&gt;
-	You choose not to take a shower. You head downstairs for a healthy breakfast. As 7:30am approaches, you finish getting ready for school. 
+	You feel like taking a shower is just too much for today. You brush back your hair, put on some deodorant and smell-good stuff and head downstairs for breakfast. You were almost late as-is. It’s 7:30 am. You grab a piece of toast for breakfast. 
 	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
 	&lt;&lt;if $shower is true&gt;&gt;
-After showering, you head downstairs to eat some breakfast. You gather your things and prepare for a normal Tuesday… It’s test day. 
-Hopefully all goes well, but you can’t help but worry. 
+After showering, you head downstairs to eat some breakfast. You gather your things and prepare for a normal Tuesday… It’s test day.
+
+Hopefully all goes well, but you can’t help but worry. Hopefully you made the right choice last night. 
 	&lt;&lt;else&gt;&gt;
-	You choose not to take a shower. you head downstairs to eat some breakfast. You gather your things and prepare for a normal Tuesday… It’s test day. 
-Hopefully all goes well, but you can’t help but worry. 
+Your so stressed about the test day today that you manage to choose not to take a shower entirely. It hasn’t been that long any way, there are bigger things to be concerned about.
+
+Hopefully all goes well, but you can’t help but worry. Hopefully you made the right choice last night.
 	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
+&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+	&lt;&lt;if $shower is true&gt;&gt;
+	Mid-week showers always feel like a hassle, but at least you get some time alone to think before your day. Today is a basic day and nothing too exciting is happening.
+
+The goal is just to survive.
+
+Breakfast is waiting for you downstairs. While you are on a time crunch, you manage to shovel down some cereal.
+	&lt;&lt;else&gt;&gt; 
+	Mid-week showers are the hardest. Even though you need to take one, the laziness feels like it needs to outweigh that stress. Hopefully it will, but probably not.
+
+Oh well. Your almost late. You run downstairs in time to eat some eggs and toast
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+	&lt;&lt;if $shower is true&gt;&gt;
+	Thursday showers are not always as bad. At least if you shower today, you can get away with not showering until Sunday. The warm water feels good. These showers are the alone time you crave.
+
+You head downstair to grab some breakfast and are surprised by the time. You may be able to actually get in an okay meal at this point. Your parents seem to be quieter than usual. Probably not a cause for concern, but you can’t help being worried about them. Are they okay?
+	&lt;&lt;else&gt;&gt; 
+	Why shower today when you can shower tomorrow and wait until Monday? Besides, your basically late.
+
+You head downstairs to find everyone else in the kitchen already. You manage to get some food into you and grab your bag by the door. Your parents seem to be quieter than usual. Probably not a cause for concern, but you can’t help being worried about them. Are they okay?
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+	&lt;&lt;if $shower is true&gt;&gt;
+	You get out of bed and walk to the shower. You know you need to look good if you go on the date tomorrow. The peace to think feels great.
+
+You head down to breakfast and notice no one downstairs. Great! Your late. No time for breakfast today, you just grab you bag. What a stressful way to start the day!
+	&lt;&lt;else&gt;&gt;
+	You know you should take a shower today, but it seems like such a large feat to accomplish. It is Friday... but it can wait. You notice your alarm didn’t go off as usual and hurry downstairs.
+
+Great! Your late! No one is downstairs. You grab your bag in a hurry. What a stressful way to start the day!
+	&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		its monday
-		/* Monday passage text for medication only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for therapist only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for no help route
-		other cases are for tues-friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $medicationTracker &gt;= 0 and $spoons &gt;= 6&gt;&gt; 
 &lt;&lt;link &quot;Take your medication and go to school (-6 spoons)&quot;&gt;&gt;[
 	&lt;&lt;set $spoons -= 6&gt;&gt;
 	&lt;&lt;set $medicationTracker to 2&gt;&gt;
 	&lt;&lt;set $medication to true&gt;&gt;
 	&lt;&lt;goto &quot;classroom&quot;&gt;&gt;
-]&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+]&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;Go to school (-5 spoons)&quot;&gt;&gt; [
 	&lt;&lt;set $spoons -= 5&gt;&gt;
 	&lt;&lt;if $medication is true&gt;&gt;
@@ -239,6 +216,7 @@ Hopefully all goes well, but you can’t help but worry.
 
 </tw-passagedata><tw-passagedata pid="3" name="homeMorning" tags="" position="283,402" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $time_of_day to &quot;wakeup&quot;&gt;&gt;
+&lt;&lt;set $shower to false&gt;&gt;
 &lt;&lt;if $dayOfWeek is &quot;Friday&quot;&gt;&gt;
 	&lt;&lt;goto &quot;regularEndings&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -260,78 +238,29 @@ Hopefully all goes well, but you can’t help but worry.
 &lt;&lt;case 1&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Monday&quot;&gt;&gt;
 	It&#39;s Monday morning.
+	
+	You wake up hoping to feel ready for the week ahead.
 &lt;&lt;case 2&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Tuesday&quot;&gt;&gt;
 	It&#39;s Tuesday morning.
+	
+	You wake to the sound of your alarm...
 &lt;&lt;case 3&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Wednesday&quot;&gt;&gt;
 	It&#39;s Wednesday morning.
+	
+	As usual, your alarm is blaring.
 &lt;&lt;case 4&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Thursday&quot;&gt;&gt;
 	It&#39;s Thursday morning.
+	
+	Alarm blaring as usual.
 &lt;&lt;case 5&gt;&gt;
 	&lt;&lt;set $dayOfWeek to &quot;Friday&quot;&gt;&gt;
 	It&#39;s Friday morning.
+	
+	Thankfully it’s the last of the week. Its date day too! Hopefully I have enough energy to go.
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-You wake up feeling refreshed and well rested. You are prepared and ready for the week ahead. 
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		its monday
-		/* Monday passage text for medication only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for therapist only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for no help route
-		other cases are for tues-friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;link &quot;Take a shower.(-1 spoons)&quot;&gt;&gt; [
 &lt;&lt;set $spoons -= 1&gt;&gt;
@@ -350,8 +279,6 @@ You wake up feeling refreshed and well rested. You are prepared and ready for th
 &lt;&lt;set $time_of_day to &quot;in_class&quot;&gt;&gt;
 You arrive at your classroom
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-Passage text shared between all paths goes here
-/* switch statements for increasing anxiety levels*/
 &lt;&lt;if $medication is true or $therapist is true&gt;&gt;
   &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
 		&lt;&lt;set $anxiety += 1&gt;&gt;
@@ -375,66 +302,29 @@ Passage text shared between all paths goes here
 	  &lt;&lt;/switch&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-/* Switch statement with embedded if statements for each route on each day */
-&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 	Your classroom is bustling and busy, as usual. People are standing around and conversing. Just like every other day, you sit at your class, quiet. You are here to do your work and leave with as little stress and interaction as possible. 
 	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
+		As you arrive at your classroom, you notice the writing on the board for test day. It seems quieter today. It’s likely you are all a little stressed. You feel a bit jittery in your seat and your palms seem to be sweating more then usual.
+
+You’ve never been good at taking exams.
 	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
+Wednesdays are usually pretty dead. People are chit-chatting around, but you can’t seem to pay attention to that. The stress from yesterday&#39;s test comes swarming back. All of the sudden, it&#39;s all you can think about.
+
+As the teacher comes around, you get your test back. A B plus! Not bad!!
+
+Seems as though you worried yourself sick for no reason.. Someday you may learn to have some confidence in that brain of yours, but you doubt it. This happens every time.
 	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
+As you get to school, you’re thankful that its Thursday. You only have a couple more days until the relaxing weekend. The test this week had you too stressed out for words.
+
+Today you seem kind of out of it. You spend your time in class staring out the window at the trees. Before you realize it, the bell rings. Your shocked back to reality.
 	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
+	As you arrive to your classroom, you can&#39;t help but stress about your date later. Life has been so busy. What if your partner thinks your neglecting them? What if they dump you? Great. The sweat is back.
+
+You spend the rest of your class staring out the window and trying to focus on anything else. Reassuring yourself isn’t helping much today.
 	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		its monday
-		/* Monday passage text for medication only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for therapist only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for no help route
-		other cases are for tues-friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+
 [[Leave the classroom-&gt;hallway]]</tw-passagedata><tw-passagedata pid="5" name="hallway" tags="" position="728,462" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $time_of_day to &quot;school_after_class&quot;&gt;&gt;
 /* switch statements for increasing anxiety levels*/
@@ -462,66 +352,25 @@ Passage text shared between all paths goes here
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-
-&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+&lt;&lt;switch $dayOfWeek&gt;&gt;
+&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 As you enter the hallway, you fold your arms to your side, trying to appear as small as possible. The hallway is crowded and very loud. The smell of perfume and sweat fills the air, along with the sound of lockers frantically opening and closing. Finally, the end of the day. It couldn’t have come fast enough.
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		its monday
-		/* Monday passage text for medication only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for therapist only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for no help route
-		other cases are for tues-friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+As you leave the classroom, the sweat seems to dissipate slightly. You don’t feel confident that it went well.
+
+As you walk through the hallway, you seem to shut others out. The test was stressful enough, you don’t need to add prying eyes to the racing thoughts of failure going through your head. These are the days you crave quiet and rest the most.
+&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+The hallways is as busy as always. Prying eyes are everywhere. It makes your head spin a little. You’ve always hated crowds, and passing time between classes is the worst. It just brings back a light sweat to your palms.
+
+You never understood how public speakers are so calm, with all those eyes staring.
+&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+As you enter the hallway, there&#39;s a group of kids laughing and taking up most of the hall. You prefer to stay invisible, and shoving through them would mean breaking that.
+
+You decide to head around the other way instead. It adds a couple minutes to your travel time, but you prefer that over interacting with them.
+&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+		As you walk through the hallway, your mind is everywhere else. Your heart is racing and your mind is going a million miles an hour. Why are you so nervous? You’ve been seeing them for months?
+&lt;&lt;/switch&gt;&gt;
+
 &lt;&lt;timed 5s&gt;&gt;
 &lt;&lt;if $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;
 You have an appointment with your therapist today.
@@ -550,7 +399,8 @@ You have an appointment with your therapist today.
 &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $time_of_day to &quot;after_school&quot;&gt;&gt;
 &lt;&lt;set $homework to false&gt;&gt; 
-&lt;&lt;if $medication is true and $therapist is true&gt;&gt;
+
+
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 As you arrive home, dinner is almost done. You head up to your room and drop your bag by your door. Homework needs to be done, but that will be taken care of after dinner. 
@@ -559,60 +409,29 @@ You head downstairs and grab a plate of food. As you sit around the kitchen tabl
 
 You head back upstairs and to your room in hopes of being left alone. 
 	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
+As you get home, you carelessly throw your book bag by the door. Dinner is almost done, as always. You head upstairs to go to the bathroom and head back down to grab a plate.
+
+As you sit around the table, the conversation seems to go as it usually does. When asked about your day, you purposely leave out the test. It’s better to just let the results come in when they do rather then stress your parents out now. They have always been strict. Maybe that’s why the high grades are so important.
+
+More conversation occurs and none of it is easing your mind from the day you had. You are exhausted and head up to your room without offering to clean up.
 	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
+You head home and toss your book bag where it always goes.
+
+Dinner is ready a little early today, so you manage to sit down right after getting home.
+
+Conversation seems to go well, but you can’t help but feel tension. You tell them about your test grade. They are not thrilled, but you could have done worse. This eases your stress slightly
+
+but your parents end up grilling you on the importance of studying and getting good grades. This just raises your stress levels more.
+
+More things to worry about. You head up to your room without helping out, again.
 	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
+You head home and toss your bookbag in its usual spot. Your parents have dinner going and you decide to sit at the table a little early.
 	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
+When you get home, your just thankful the day is over. You are so exhausted that even sitting around the table and eating dinner is a struggle. You answer any pending questions with as little words as possible.
+
+You head up to your room thankful for some quiet finally.
 	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is true and $therapist is false&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		its monday
-		/* Monday passage text for medication only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;elseif $medication is false and $therapist is true&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for therapist only route
-	other cases are for tues - friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
-		monday
-		/* Monday passage text for no help route
-		other cases are for tues-friday*/
-	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		tuesday
-	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
-		wednesday
-	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
-		thursday
-	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
-		friday
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+	
 &lt;&lt;if $spoons &gt;= 2&gt;&gt;
 	&lt;&lt;switch $dayOfWeek&gt;&gt;
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
@@ -620,7 +439,6 @@ You head back upstairs and to your room in hopes of being left alone.
 		&lt;&lt;set $spoons -= 2&gt;&gt;
 		&lt;&lt;set $anxiety -= 1&gt;&gt;
 		&lt;&lt;set $homework to true&gt;&gt;
-		&lt;&lt;set $teststudy to true&gt;&gt;
 		&lt;&lt;goto &quot;homework&quot;&gt;&gt;	
 	]&lt;&lt;/link&gt;&gt;
 	&lt;&lt;default&gt;&gt;
@@ -644,37 +462,87 @@ You head back upstairs and to your room in hopes of being left alone.
 &lt;&lt;if $spoons is 0&gt;&gt;
 	You are too tired to do anything else tonight.
 &lt;&lt;/if&gt;&gt;
-[[Go directly to sleep.-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;if $anxiety &gt;= 15&gt;&gt;
- You go on the date, but the week you just had was so stressful that you just can&#39;t seem to relax. You end the date feeling more anxious than when you left school.
- 	&lt;&lt;set $anxiety += 3&gt;&gt;
+&lt;&lt;if $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
+[[Go directly to sleep.-&gt;homeMorning]]
+&lt;&lt;else&gt;&gt;
+[[Go directly to sleep.-&gt;regularEndings]]
+&lt;&lt;/if&gt;&gt;
+</tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+&lt;&lt;if $anxiety &lt; 8&gt;&gt;
+You spend the evening talking, laughing, and forgetting about your week. You go out for ice cream and sit and watch the sunset.
+
+Your date goes really well! After the week you’ve had, you haven&#39;t had much time to think about your partner. Thankfully date nights are an excellent way to end the week.
+	&lt;&lt;set $anxiety -= 3&gt;&gt;
+&lt;&lt;elseif $anxiety &lt; 15&gt;&gt;
+You spend the evening talking with your partner. Some venting helps you calm down. It has been a stressful week and you can tell that the venting takes a toll on the date.
+
+Thankfully, the date didn’t go too bad. You both still enjoyed the bonding time. After the week you’ve had, you haven&#39;t had much time to think about your partner. Thankfully date nights are an excellent way to end the week.
+ 	&lt;&lt;set $anxiety -= 1&gt;&gt;
 	&lt;&lt;set $spoons -= 1&gt;&gt;
 &lt;&lt;else&gt;&gt;
-	You go on the date. It is nice to see your significant other and the activity you did really helped take the edge off after a difficult week.
-	&lt;&lt;set $anxiety -= 3&gt;&gt;
+You spend your entire date venting and being emotionally everywhere. You have had a bad week and it shows. Your partner isn’t too pleased with how distant you two are growing.
+
+They end the date early. Great. Another thing you can stress about.
 &lt;&lt;/if&gt;&gt;
 [[Go home.-&gt;evening]]
 </tw-passagedata><tw-passagedata pid="8" name="To Do" tags="" position="292,280" size="100,100">Test paths more to see what anxiety levels get reached and how balancing works with spoons.
 Try to figure out how many paths exist and come up with a way to test that every path works. (tedious and time consuming)
 Maybe add an agenda to the homeMorning passage.</tw-passagedata><tw-passagedata pid="9" name="therapy" tags="" position="850,274" size="100,100">&lt;&lt;set $anxiety -= 4 &gt;&gt;
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-You go to your therapy appointment. Your therapist helps you put your anxiety into perspective and you feel a bit better after leaving the appointment.
+Today is therapy day! Honestly you look forward to your appointments a lot. Even though they can be difficult to find the effort to go to, they help relieve a lot of your stress.
+
+Your therapist is always kind and has worked through some major issues with you.
+&lt;&lt;if $medicationTracker &gt;= 0&gt;&gt;
+She mentions your medications seem to be doing good work at managing your stress levels. You think she’s pretty right. You&#39;re not sure where you’d be without them.
+&lt;&lt;else&gt;&gt;
+She recommends you could use some medication to manage your worrying and stress levels. It may be something to think about.
+&lt;&lt;/if&gt;&gt;
 [[Go home-&gt;evening]] </tw-passagedata><tw-passagedata pid="10" name="homework" tags="" position="1105,330" size="100,100">
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $time_of_day to &quot;nightwork&quot;&gt;&gt;
-&lt;&lt;if $teststudy is true&gt;&gt;
-	You spend the rest of the evening studying for the test on Tuesday. You end the night feeling confident and reassure, but there will always be a looming feeling of worry no matter how prepared you are. 
+
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt; 
+	You spend the rest of the evening studying for the test on Tuesday. You end the night feeling confident and reassure, but there will always be a looming feeling of worry no matter how prepared you are.
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+	Although doing homework seems like a ton of extra work, you know it&#39;s for the best. Even on days like today, you value yourself for being able to push through.
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+	Homework always seems to get rougher throughout the week, but you know grades are important. You study for some time and feel accomplished.
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+	You choose to spend some time working on homework. Thankfully you do okay on it and feel prepared for what&#39;s to come in class. I guess today was a good day to zone out because you know the material.
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+	After dinner, you spend some time doing some homework so you don’t need to worry about it all weekend. You are not looking forward to the next week, but at least there&#39;s some time in between.
+	&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;if $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
+[[Go to sleep-&gt;homeMorning]]
 &lt;&lt;else&gt;&gt;
-	You do some homework and feel somewhat accomplished.
+[[Go to sleep-&gt;regularEndings]] 
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;set $teststudy to false&gt;&gt;
-[[Go to Sleep-&gt;homeMorning]] 
 
 </tw-passagedata><tw-passagedata pid="11" name="videogames" tags="" position="1106,458" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;set $time_of_day to &quot;nightgame&quot;&gt;&gt;
-You play a few rounds of your favorite videogame. It helps you destress from your day and you finish the evening feeling less anxious than you did earlier today.
 
-[[Go to sleep-&gt;homeMorning]]</tw-passagedata><tw-passagedata pid="12" name="stayhome" tags="" position="651,609" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+	&lt;&lt;switch $dayOfWeek&gt;&gt;
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt; 
+	You spend the rest of the night winding down and playing some video games. You often like to spend time unwinding after a stressful day at school. You&#39;re thinking you probably should have studied... But you know the class content pretty well, so maybe you will be okay?
+	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
+	You recognize that you could use some self-care. Although playing games isn&#39;t productive, it eases your mind and gives you something else to think about.
+	&lt;&lt;case &quot;Wednesday&quot;&gt;&gt;
+	You can’t blame yourself for being too tired to do homework. Video games are self-care and your not sure where you would be without them at this point.
+
+You spend a few hours playing and feel a bit more relaxed. Sometimes distracting your mind is a good thing.
+	&lt;&lt;case &quot;Thursday&quot;&gt;&gt;
+	After zoning out in class, homework seems worthless to do. You are a little worried that you missed out on something important, but games takes you mind right off of that.
+	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
+	The stress of the day didn’t seem to go away throughout dinner. Guess a little self-care is the answer. You spend some time playing video games to take your mind off things.
+	&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;if $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
+[[Go to sleep-&gt;homeMorning]]
+&lt;&lt;else&gt;&gt;
+[[Go to sleep-&gt;regularEndings]] 
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="stayhome" tags="" position="651,609" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;if $stayhome &gt;= 2&gt;&gt;
 	Your anxiety is getting so bad that you find existence to be dreadful. You have a couple of options. You can do nothing about it, drop out of school and begin sinking into depression, or you can make one last ditch effort to try to work on improving your anxiety symptoms.
 [[Work on making things better-&gt;positiveOutlookBadEnd]]
@@ -717,7 +585,8 @@ Perhaps only taking medication is not enough anymore. You get in contact with th
 &lt;&lt;else&gt;&gt;
 You can&#39;t go on living this way without any outside help. You get in contact with the school therapist and make an appointment. During your therapy appointment, the therapist suggests see a psychiatrist about getting on some medication as well. You gratefully accept the suggestion and leave with a psychiatry appointment. You decide to take the rest of the week off from your classes. Maybe with therapy and some medication, things will start looking up.
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="negativeOutlookBadEnd" tags="" position="872,692" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;&lt;script&gt;&gt;
+You are incredibly anxious and stressed on a daily basis. You have heard that medication and therapy can help, but the thought of reaching out and admitting you are struggling just makes you even more anxious. You curl up in bed and close your eyes, wishing there was some way you could dig yourself out of the situation you are in. You decide to skip school for the rest of the week and consider dropping out. You don&#39;t know what you&#39;d even do for work with so much anxiety, but you know you have to carry on...somehow.</tw-passagedata><tw-passagedata pid="15" name="regularEndings" tags="" position="1289,388" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+Endings screen. How many endings and what criteria there are for reaching them is TBD.</tw-passagedata><tw-passagedata pid="16" name="canvas_container" tags="" position="173,783" size="100,100">&lt;&lt;script&gt;&gt;
 
 //------ constants --------------------------------------------
 // gotcha: some browsers don&#39;t allow the const or let keywords
