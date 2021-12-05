@@ -125,13 +125,8 @@ Welcome to GAMENAME. This is an interactive story meant to broaden your mind and
 ]&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;Do not see a therapist and do not take medication&quot;&gt;&gt;[
 	&lt;&lt;goto &quot;homeMorning&quot;&gt;&gt;
-]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">
-You eat breakfast and finish getting ready for school.
-&lt;&lt;set $time_of_day to &quot;breakfast&quot;&gt;&gt;
-
+]&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="breakfast" tags="" position="438,454" size="100,100">&lt;&lt;set $time_of_day to &quot;breakfast&quot;&gt;&gt;\
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-
-
 &lt;&lt;switch $dayOfWeek&gt;&gt;
 &lt;&lt;case &quot;Monday&quot;&gt;&gt;
 	&lt;&lt;if $shower is true&gt;&gt;
@@ -180,9 +175,8 @@ You head down to breakfast and notice no one downstairs. Great! Your late. No ti
 	You know you should take a shower today, but it seems like such a large feat to accomplish. It is Friday... but it can wait. You notice your alarm didn’t go off as usual and hurry downstairs.
 
 Great! Your late! No one is downstairs. You grab your bag in a hurry. What a stressful way to start the day!
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;/switch&gt;&gt;
-
+	&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;/switch&gt;&gt;\
 &lt;&lt;if $medicationTracker &gt;= 0 and $spoons &gt;= 6&gt;&gt; 
 &lt;&lt;link &quot;Take your medication and go to school (-6 spoons)&quot;&gt;&gt;[
 	&lt;&lt;set $spoons -= 6&gt;&gt;
@@ -190,17 +184,19 @@ Great! Your late! No one is downstairs. You grab your bag in a hurry. What a str
 	&lt;&lt;set $medication to true&gt;&gt;
 	&lt;&lt;goto &quot;classroom&quot;&gt;&gt;
 ]&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $spoons &gt;= 5&gt;&gt;
+  &lt;&lt;link &quot;Go to school (-5 spoons)&quot;&gt;&gt; [
+	  &lt;&lt;set $spoons -= 5&gt;&gt;
+	  &lt;&lt;if $medication is true&gt;&gt;
+	  &lt;&lt;set $medicationTracker -= 1&gt;&gt;
+	  &lt;&lt;/if&gt;&gt;\
+	  &lt;&lt;if $medicationTracker is 0&gt;&gt;
+	  &lt;&lt;set $medication to false&gt;&gt;
+	  &lt;&lt;/if&gt;&gt;\
+	  &lt;&lt;goto &quot;classroom&quot;&gt;&gt;
+  ]&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;link &quot;Go to school (-5 spoons)&quot;&gt;&gt; [
-	&lt;&lt;set $spoons -= 5&gt;&gt;
-	&lt;&lt;if $medication is true&gt;&gt;
-	&lt;&lt;set $medicationTracker -= 1&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;if $medicationTracker is 0&gt;&gt;
-	&lt;&lt;set $medication to false&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;goto &quot;classroom&quot;&gt;&gt;
-]&lt;&lt;/link&gt;&gt;
 &lt;&lt;if $spoons &lt;= 7&gt;&gt;
   &lt;&lt;link &quot;Skip school, it&#39;s just too much to handle today&quot;&gt;&gt;[
 	  &lt;&lt;set $anxiety += 4&gt;&gt;
@@ -214,25 +210,31 @@ Great! Your late! No one is downstairs. You grab your bag in a hurry. What a str
 
 
 
-</tw-passagedata><tw-passagedata pid="3" name="homeMorning" tags="" position="283,402" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;set $time_of_day to &quot;wakeup&quot;&gt;&gt;
-&lt;&lt;set $shower to false&gt;&gt;
-&lt;&lt;if $dayOfWeek is &quot;Friday&quot;&gt;&gt;
-	&lt;&lt;goto &quot;regularEndings&quot;&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;set $anxiety *= 0.8&gt;&gt;
-&lt;&lt;set $shower to false&gt;&gt;
-&lt;&lt;if $anxiety &lt;= 4&gt;&gt;
-  &lt;&lt;set $spoons to 10&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 8&gt;&gt;
-  &lt;&lt;set $spoons to 9&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 12&gt;&gt;
-  &lt;&lt;set $spoons to 8&gt;&gt;
-&lt;&lt;elseif $anxiety &lt;= 16&gt;&gt;
-  &lt;&lt;set $spoons to 7&gt;&gt;
-&lt;&lt;else&gt;&gt;
-  &lt;&lt;set $spoons to 6&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+</tw-passagedata><tw-passagedata pid="3" name="homeMorning" tags="" position="283,402" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;&lt;&lt;set $time_of_day to &quot;wakeup&quot;&gt;&gt;&lt;&lt;set $shower to false&gt;&gt;\
+&lt;&lt;if $dayOfWeek is &quot;Friday&quot;&gt;&gt;\
+&lt;&lt;goto &quot;regularEndings&quot;&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;set $anxiety *= 0.8&gt;&gt;\
+&lt;&lt;set $shower to false&gt;&gt;\
+&lt;&lt;if $anxiety &lt;= 3&gt;&gt;\
+  &lt;&lt;set $spoons to 10&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 6&gt;&gt;\
+  &lt;&lt;set $spoons to 9&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 9&gt;&gt;\
+  &lt;&lt;set $spoons to 8&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 12&gt;&gt;\
+  &lt;&lt;set $spoons to 7&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 15&gt;&gt;\
+  &lt;&lt;set $spoons to 6&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 18&gt;&gt;\
+  &lt;&lt;set $spoons to 5&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 21&gt;&gt;\
+  &lt;&lt;set $spoons to 4&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 24&gt;&gt;\
+  &lt;&lt;set $spoons to 3&gt;&gt;\
+&lt;&lt;elseif $anxiety &lt;= 27&gt;&gt;\
+  &lt;&lt;set $spoons to 2&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
 
 &lt;&lt;switch visited()&gt;&gt;
 &lt;&lt;case 1&gt;&gt;
@@ -261,7 +263,6 @@ Great! Your late! No one is downstairs. You grab your bag in a hurry. What a str
 	
 	Thankfully it’s the last of the week. Its date day too! Hopefully I have enough energy to go.
 &lt;&lt;/switch&gt;&gt;
-
 &lt;&lt;link &quot;Take a shower.(-1 spoons)&quot;&gt;&gt; [
 &lt;&lt;set $spoons -= 1&gt;&gt;
 &lt;&lt;set $anxiety -= 1&gt;&gt;
@@ -275,35 +276,35 @@ Great! Your late! No one is downstairs. You grab your bag in a hurry. What a str
 
 
 
-</tw-passagedata><tw-passagedata pid="4" name="classroom" tags="" position="579,455" size="100,100">&lt;&lt;set $stayhome to 0&gt;&gt;
-&lt;&lt;set $time_of_day to &quot;in_class&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="4" name="classroom" tags="" position="579,455" size="100,100">&lt;&lt;set $stayhome to 0&gt;&gt;\
+&lt;&lt;set $time_of_day to &quot;in_class&quot;&gt;&gt;\
 You arrive at your classroom
 &lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;if $medication is true or $therapist is true&gt;&gt;
-  &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
-		&lt;&lt;set $anxiety += 1&gt;&gt;
-  &lt;&lt;else&gt;&gt; /* no homework but therapy/meds*/
-  		&lt;&lt;set $anxiety += 2&gt;&gt;
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;if $homework is true&gt;&gt;
-	  &lt;&lt;switch $dayOfWeek&gt;&gt;
-	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
-	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 2&gt;&gt;
-	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;else&gt;&gt;
-	  &lt;&lt;switch $dayOfWeek&gt;&gt;
-	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 4&gt;&gt;
-	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
-	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
-	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
+&lt;&lt;if $medication is true or $therapist is true&gt;&gt;\
+  &lt;&lt;if $homework is true&gt;&gt;\ /* homework and therapy/meds*/
+		&lt;&lt;set $anxiety += 1&gt;&gt;\
+  &lt;&lt;else&gt;&gt;\ /* no homework but therapy/meds*/
+  		&lt;&lt;set $anxiety += 2&gt;&gt;\
+  &lt;&lt;/if&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+	&lt;&lt;if $homework is true&gt;&gt;\
+	  &lt;&lt;switch $dayOfWeek&gt;&gt;\
+	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;\
+		  &lt;&lt;set $anxiety += 3&gt;&gt;\
+	  &lt;&lt;default&gt;&gt;\
+		  &lt;&lt;set $anxiety += 2&gt;&gt;\
+	  &lt;&lt;/switch&gt;&gt;\
+	&lt;&lt;else&gt;&gt;\
+	  &lt;&lt;switch $dayOfWeek&gt;&gt;\
+	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;\
+		  &lt;&lt;set $anxiety += 4&gt;&gt;\
+	  &lt;&lt;default&gt;&gt;\
+		  &lt;&lt;set $anxiety += 3&gt;&gt;\
+	  &lt;&lt;/switch&gt;&gt;\
+	&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+	&lt;&lt;switch $dayOfWeek&gt;&gt;\
+	&lt;&lt;case &quot;Monday&quot;&gt;&gt;\
 	Your classroom is bustling and busy, as usual. People are standing around and conversing. Just like every other day, you sit at your class, quiet. You are here to do your work and leave with as little stress and interaction as possible. 
 	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
 		As you arrive at your classroom, you notice the writing on the board for test day. It seems quieter today. It’s likely you are all a little stressed. You feel a bit jittery in your seat and your palms seem to be sweating more then usual.
@@ -326,32 +327,30 @@ You spend the rest of your class staring out the window and trying to focus on a
 	&lt;&lt;/switch&gt;&gt;
 
 [[Leave the classroom-&gt;hallway]]</tw-passagedata><tw-passagedata pid="5" name="hallway" tags="" position="728,462" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;set $time_of_day to &quot;school_after_class&quot;&gt;&gt;
-/* switch statements for increasing anxiety levels*/
+&lt;&lt;set $time_of_day to &quot;school_after_class&quot;&gt;&gt; /* switch statements for increasing anxiety levels*/
 &lt;&lt;if $medication is true or $therapist is true&gt;&gt;
   &lt;&lt;if $homework is true&gt;&gt; /* homework and therapy/meds*/
 		&lt;&lt;set $anxiety += 1&gt;&gt;
   &lt;&lt;else&gt;&gt; /* no homework but therapy/meds*/
-  		&lt;&lt;set $anxiety += 2&gt;&gt;
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;if $homework is true&gt;&gt;
+  		&lt;&lt;set $anxiety += 2&gt;&gt;\
+  &lt;&lt;/if&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+	&lt;&lt;if $homework is true&gt;&gt;\
 	  &lt;&lt;switch $dayOfWeek&gt;&gt;
 	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
+		  &lt;&lt;set $anxiety += 3&gt;&gt;\
 	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 2&gt;&gt;
+		  &lt;&lt;set $anxiety += 2&gt;&gt;\
 	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;else&gt;&gt;
+	&lt;&lt;else&gt;&gt;\
 	  &lt;&lt;switch $dayOfWeek&gt;&gt;
 	  &lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
-		  &lt;&lt;set $anxiety += 4&gt;&gt;
+		  &lt;&lt;set $anxiety += 4&gt;&gt;\
 	  &lt;&lt;default&gt;&gt;
-		  &lt;&lt;set $anxiety += 3&gt;&gt;
+		  &lt;&lt;set $anxiety += 3&gt;&gt;\
 	  &lt;&lt;/switch&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
+	&lt;&lt;/if&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
 &lt;&lt;switch $dayOfWeek&gt;&gt;
 &lt;&lt;case &quot;Monday&quot;&gt;&gt;
 As you enter the hallway, you fold your arms to your side, trying to appear as small as possible. The hallway is crowded and very loud. The smell of perfume and sweat fills the air, along with the sound of lockers frantically opening and closing. Finally, the end of the day. It couldn’t have come fast enough.
@@ -371,37 +370,35 @@ You decide to head around the other way instead. It adds a couple minutes to you
 		As you walk through the hallway, your mind is everywhere else. Your heart is racing and your mind is going a million miles an hour. Why are you so nervous? You’ve been seeing them for months?
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;timed 5s&gt;&gt;
-&lt;&lt;if $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;
+&lt;&lt;timed 5s&gt;&gt;\
+&lt;&lt;if $therapist is true and $dayOfWeek is &quot;Thursday&quot;&gt;&gt;\
 You have an appointment with your therapist today.
-  &lt;&lt;if $spoons &gt;= 3&gt;&gt;
+  &lt;&lt;if $spoons &gt;= 3&gt;&gt;\
 	&lt;&lt;link &quot;Go to your therapy appointment(-3 spoons)&quot;&gt;&gt;[
 		&lt;&lt;set $spoons -= 3&gt;&gt;
 		&lt;&lt;set $anxiety -= 4&gt;&gt;
 		&lt;&lt;goto &quot;therapy&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
-  &lt;&lt;else&gt;&gt;
+  &lt;&lt;else&gt;&gt;\
 	  You are too exhausted to bother going to your therapy 		appointment.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;elseif $dayOfWeek is &quot;Friday&quot;&gt;&gt;
+  &lt;&lt;/if&gt;&gt;\
+&lt;&lt;elseif $dayOfWeek is &quot;Friday&quot;&gt;&gt;\
   Your significant other has invited you to go on a date.
-    &lt;&lt;if $spoons &gt;= 3&gt;&gt;
+    &lt;&lt;if $spoons &gt;= 3&gt;&gt;\
 	&lt;&lt;link &quot;Accept their offer and go on the date.(-3 spoons)&quot;&gt;&gt;[
 		&lt;&lt;set $spoons -= 3&gt;&gt;
 		&lt;&lt;goto &quot;date&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
-  &lt;&lt;else&gt;&gt;
+  &lt;&lt;else&gt;&gt;\
 	  You are too exhausted for any more social interaction today, even if it is with your favorite person.
-  &lt;&lt;/if&gt;&gt;
-&lt;&lt;else&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+  &lt;&lt;/if&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
 [[Leave school and go home.-&gt;evening]] 
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;set $time_of_day to &quot;after_school&quot;&gt;&gt;
-&lt;&lt;set $homework to false&gt;&gt; 
-
-
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
+&lt;&lt;/timed&gt;&gt;\</tw-passagedata><tw-passagedata pid="6" name="evening" tags="" position="954,404" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+&lt;&lt;set $time_of_day to &quot;after_school&quot;&gt;&gt;\
+&lt;&lt;set $homework to false&gt;&gt; \
+	&lt;&lt;switch $dayOfWeek&gt;&gt;\
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 As you arrive home, dinner is almost done. You head up to your room and drop your bag by your door. Homework needs to be done, but that will be taken care of after dinner. 
 
@@ -432,8 +429,8 @@ When you get home, your just thankful the day is over. You are so exhausted that
 You head up to your room thankful for some quiet finally.
 	&lt;&lt;/switch&gt;&gt;
 	
-&lt;&lt;if $spoons &gt;= 2&gt;&gt;
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
+&lt;&lt;if $spoons &gt;= 2&gt;&gt;\
+	&lt;&lt;switch $dayOfWeek&gt;&gt;\
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt;
 		&lt;&lt;link &quot;Study for the test in class tomorrow(-2 spoons)&quot;&gt;&gt; [
 		&lt;&lt;set $spoons -= 2&gt;&gt;
@@ -441,32 +438,32 @@ You head up to your room thankful for some quiet finally.
 		&lt;&lt;set $homework to true&gt;&gt;
 		&lt;&lt;goto &quot;homework&quot;&gt;&gt;	
 	]&lt;&lt;/link&gt;&gt;
-	&lt;&lt;default&gt;&gt;
+	&lt;&lt;default&gt;&gt;\
 	&lt;&lt;link &quot;Do some homework( -2 spoons)&quot;&gt;&gt; [
 		&lt;&lt;set $spoons -= 2&gt;&gt;
 		&lt;&lt;set $anxiety -= 1&gt;&gt;
 		&lt;&lt;set $homework to true&gt;&gt;
 		&lt;&lt;goto &quot;homework&quot;&gt;&gt;	
 	]&lt;&lt;/link&gt;&gt;
-	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $spoons is 1&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $spoons is 1&gt;&gt;\
 	You are too tired to do any homework tonight, but you feel up to playing a few rounds of your favorite video game.
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $spoons &gt;= 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $spoons &gt;= 1&gt;&gt;\
 	&lt;&lt;link &quot;Play your favorite video game( -1 spoons)&quot;&gt;&gt; [
 		&lt;&lt;set $anxiety -= 2&gt;&gt;
 		&lt;&lt;goto &quot;videogames&quot;&gt;&gt;
 	]&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $spoons is 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
+&lt;&lt;if $spoons is 0&gt;&gt;\
 	You are too tired to do anything else tonight.
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
 &lt;&lt;if $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
 [[Go directly to sleep.-&gt;homeMorning]]
-&lt;&lt;else&gt;&gt;
+&lt;&lt;else&gt;&gt;\
 [[Go directly to sleep.-&gt;regularEndings]]
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;\
 </tw-passagedata><tw-passagedata pid="7" name="date" tags="" position="849,159" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 &lt;&lt;if $anxiety &lt; 8&gt;&gt;
 You spend the evening talking, laughing, and forgetting about your week. You go out for ice cream and sit and watch the sunset.
@@ -487,8 +484,7 @@ They end the date early. Great. Another thing you can stress about.
 [[Go home.-&gt;evening]]
 </tw-passagedata><tw-passagedata pid="8" name="To Do" tags="" position="292,280" size="100,100">Test paths more to see what anxiety levels get reached and how balancing works with spoons.
 Try to figure out how many paths exist and come up with a way to test that every path works. (tedious and time consuming)
-Maybe add an agenda to the homeMorning passage.</tw-passagedata><tw-passagedata pid="9" name="therapy" tags="" position="850,274" size="100,100">&lt;&lt;set $anxiety -= 4 &gt;&gt;
-&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
+Maybe add an agenda to the homeMorning passage.</tw-passagedata><tw-passagedata pid="9" name="therapy" tags="" position="850,274" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
 Today is therapy day! Honestly you look forward to your appointments a lot. Even though they can be difficult to find the effort to go to, they help relieve a lot of your stress.
 
 Your therapist is always kind and has worked through some major issues with you.
@@ -521,9 +517,8 @@ She recommends you could use some medication to manage your worrying and stress 
 &lt;&lt;/if&gt;&gt;
 
 </tw-passagedata><tw-passagedata pid="11" name="videogames" tags="" position="1106,458" size="100,100">&lt;canvas id=&quot;CANVAS&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;&lt;/canvas&gt;
-&lt;&lt;set $time_of_day to &quot;nightgame&quot;&gt;&gt;
-
-	&lt;&lt;switch $dayOfWeek&gt;&gt;
+&lt;&lt;set $time_of_day to &quot;nightgame&quot;&gt;&gt;\
+	&lt;&lt;switch $dayOfWeek&gt;&gt;\
 	&lt;&lt;case &quot;Monday&quot;&gt;&gt; 
 	You spend the rest of the night winding down and playing some video games. You often like to spend time unwinding after a stressful day at school. You&#39;re thinking you probably should have studied... But you know the class content pretty well, so maybe you will be okay?
 	&lt;&lt;case &quot;Tuesday&quot;&gt;&gt;
@@ -536,7 +531,7 @@ You spend a few hours playing and feel a bit more relaxed. Sometimes distracting
 	After zoning out in class, homework seems worthless to do. You are a little worried that you missed out on something important, but games takes you mind right off of that.
 	&lt;&lt;case &quot;Friday&quot;&gt;&gt;
 	The stress of the day didn’t seem to go away throughout dinner. Guess a little self-care is the answer. You spend some time playing video games to take your mind off things.
-	&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;\
 
 &lt;&lt;if $dayOfWeek is not &quot;Friday&quot;&gt;&gt;
 [[Go to sleep-&gt;homeMorning]]
